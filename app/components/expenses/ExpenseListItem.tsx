@@ -12,7 +12,7 @@ function ExpenseListItem({ id, title, amount }: Props) {
   }
 
   return (
-    <article className="m-6 p-4 bg-blue-200 rounded-lg flex justify-between items-baseline text-slate-50">
+    <article className="m-6 p-4 bg-blue-500 rounded-lg flex justify-between items-baseline text-slate-50">
       <div>
         <h2 className="m-0 font-bold text-2xl">{title}</h2>
         <p className="m-0">${amount.toFixed(2)}</p>

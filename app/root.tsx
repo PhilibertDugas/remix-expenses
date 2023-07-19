@@ -8,7 +8,6 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import stylesheet from "~/tailwind.css";
-import MainHeader from "./components/navigation/MainHeader";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
@@ -24,7 +23,6 @@ export default function App() {
         <Links />
       </head>
       <body className="bg-gradient-to-r from-cyan-500 to-blue-500 items-center flex flex-col">
-        <MainHeader />
         <Outlet />
         <ScrollRestoration />
         <Scripts />

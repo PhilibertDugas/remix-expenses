@@ -27,12 +27,12 @@ export default function PricingPage() {
       </h2>
       <ol
         id="pricing-plans"
-        className="w-10/12 mx-12 my-auto flex justify-center gap-8"
+        className="w-10/12 mx-12 my-auto flex justify-center gap-8 shadow-md text-slate-300"
       >
         {PRICING_PLANS.map((plan) => (
           <li
             key={plan.id}
-            className="bg-blue-500 rounded-md overflow-hidden shadow-md text-slate-100 w-1/2"
+            className="bg-blue-500 rounded-md overflow-hidden shadow-md text-slate-100 w-1/2  first-of-type:bg-blue-500 last-of-type:bg-purple-500"
           >
             <PricingPlan
               title={plan.title}
