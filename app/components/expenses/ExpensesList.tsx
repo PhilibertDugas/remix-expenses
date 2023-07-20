@@ -1,8 +1,12 @@
 import ExpenseListItem from "./ExpenseListItem";
-import { Expense } from "./ExpenseStatistics";
 
+interface ExpensesDetails {
+  id: string;
+  title: string;
+  amount: number;
+}
 interface Props {
-  expenses: Expense[];
+  expenses: ExpensesDetails[];
 }
 
 function ExpensesList({ expenses }: Props) {
