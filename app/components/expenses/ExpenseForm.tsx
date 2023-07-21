@@ -1,7 +1,30 @@
 import { Form, NavLink } from "@remix-run/react";
 
-function ExpenseForm() {
+export interface Expense {
+  id: string;
+  title: string;
+  amount: number;
+  date: string;
+}
+
+interface Props {
+  expense?: Expense;
+}
+
+function ExpenseForm({ expense }: Props) {
   const today = new Date().toISOString().slice(0, 10); // yields something like 2023-09-10
+
+  const defaultValue = expense
+    ? {
+        title: expense.title,
+        amount: expense.amount,
+        date: expense.date.slice(0, 10),
+      }
+    : {
+        title: "",
+        amount: 0,
+        date: today,
+      };
 
   return (
     <Form method="post" className="p-2">
@@ -16,6 +39,7 @@ function ExpenseForm() {
           name="title"
           required
           maxLength={30}
+          defaultValue={defaultValue.title}
         />
       </p>
 
@@ -32,6 +56,7 @@ function ExpenseForm() {
             step="0.01"
             className="block mb-2 p-2 w-full rounded-md border-none"
             required
+            defaultValue={defaultValue.amount}
           />
         </p>
         <p className="p-4 w-full">
@@ -45,6 +70,7 @@ function ExpenseForm() {
             name="date"
             max={today}
             required
+            defaultValue={defaultValue.date}
           />
         </p>
       </div>

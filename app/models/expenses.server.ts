@@ -15,3 +15,18 @@ export const addExpense = async (
 export async function getExpenses() {
   return prisma.expense.findMany();
 }
+
+export const getSingleExpense = (id: string) => {
+  return prisma.expense.findFirst({ where: { id } });
+};
+
+export const updateExpense = (
+  id: string,
+  expenseData: Pick<Expense, "title" | "amount" | "date">
+) => {
+  return prisma.expense.update({ where: { id }, data: expenseData });
+};
+
+export const deleteExpense = (id: string) => {
+  return prisma.expense.delete({ where: { id } });
+};

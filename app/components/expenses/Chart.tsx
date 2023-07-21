@@ -1,6 +1,9 @@
 import ChartBar from "./ChartBar";
-import { Expense } from "./ExpenseStatistics";
 
+interface Expense {
+  date: string;
+  amount: number;
+}
 interface Props {
   expenses: Expense[];
 }
