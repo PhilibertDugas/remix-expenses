@@ -1,9 +1,16 @@
-import { Form, Link, useNavigation, useSearchParams } from "@remix-run/react";
+import {
+  Form,
+  Link,
+  useActionData,
+  useNavigation,
+  useSearchParams,
+} from "@remix-run/react";
 import { FaLock, FaUserPlus } from "react-icons/fa";
 
 function AuthForm() {
   const [searchParams] = useSearchParams();
   const navigation = useNavigation();
+  const validationErrors = useActionData();
 
   const authMode = searchParams.get("mode") || "login";
 
@@ -26,7 +33,7 @@ function AuthForm() {
           Email Address
         </label>
         <input
-          className="w-1/2 text-center rounded-lg border-white border-solid border-2"
+          className="w-1/2 text-center text-blue-500 rounded-lg border-white border-solid border-2"
           type="email"
           id="email"
           name="email"
@@ -38,13 +45,22 @@ function AuthForm() {
           Password
         </label>
         <input
-          className="w-1/2 text-center rounded-lg border-white border-solid border-2"
+          className="w-1/2 text-center text-blue-500 rounded-lg border-white border-solid border-2"
           type="password"
           id="password"
           name="password"
           minLength={7}
         />
       </p>
+
+      {validationErrors && (
+        <ul>
+          {Object.values(validationErrors).map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+      )}
+
       <div className="flex-col flex items-center mt-8">
         <button
           disabled={isSubmitting}

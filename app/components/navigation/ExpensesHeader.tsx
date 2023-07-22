@@ -14,7 +14,7 @@ function ExpensesHeader() {
           <li>
             <NavLink
               to="/expenses"
-              className="text-blue-200 hover:text-blue-500 [&.active]:text-blue-500"
+              className="text-white hover:text-blue-500 [&.active]:text-blue-500"
             >
               Manage Expenses
             </NavLink>
@@ -22,7 +22,7 @@ function ExpensesHeader() {
           <li>
             <NavLink
               to="/expenses/analysis"
-              className="text-blue-200 hover:text-blue-500 [&.active]:text-blue-500"
+              className="text-white hover:text-blue-500 [&.active]:text-blue-500"
             >
               Analyze Expenses
             </NavLink>

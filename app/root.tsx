@@ -67,5 +67,21 @@ export function ErrorBoundary() {
         </main>
       </Document>
     );
+  } else {
+    const errorMessage = (error as Error).message;
+    return (
+      <Document title="OOPS">
+        <main>
+          <Error title="Something went wrong">
+            <div>
+              <p>This broke, sorry: {errorMessage}</p>
+              <p>
+                Back to <Link to="/">safety</Link>
+              </p>
+            </div>
+          </Error>
+        </main>
+      </Document>
+    );
   }
 }

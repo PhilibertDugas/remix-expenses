@@ -12,7 +12,7 @@ function MainHeader() {
         <ul className="flex gap-8 flex-1">
           <li>
             <NavLink
-              className="text-blue-200 hover:text-blue-500 [&.active]:text-blue-500"
+              className="text-white hover:text-blue-500 [&.active]:text-blue-500"
               to="/"
             >
               Home
@@ -20,7 +20,7 @@ function MainHeader() {
           </li>
           <li>
             <NavLink
-              className="text-blue-200 hover:text-blue-500 [&.active]:text-blue-500"
+              className="text-white hover:text-blue-500 [&.active]:text-blue-500"
               to="/pricing"
             >
               Pricing
