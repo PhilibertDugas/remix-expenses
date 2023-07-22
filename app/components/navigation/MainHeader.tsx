@@ -1,7 +1,11 @@
-import { NavLink } from "@remix-run/react";
+import { Form, NavLink } from "@remix-run/react";
 import Logo from "../util/Logo";
 
-function MainHeader() {
+interface Props {
+  userId: string | null;
+}
+
+function MainHeader({ userId }: Props) {
   return (
     <header
       id="main-header"
@@ -31,12 +35,21 @@ function MainHeader() {
       <nav id="cta-nav" className="justify-self-end">
         <ul className="flex flex-1 gap-0">
           <li>
-            <NavLink
-              to="/auth"
-              className="text-blue-200 hover:text-blue-500 [&.active]:text-blue-500 rounded-full bg-blue-800 px-8 py-2"
-            >
-              Login
-            </NavLink>
+            {userId && (
+              <Form method="POST" action="/logout">
+                <button className="text-white hover:text-blue-500 [&.active]:text-blue-500 rounded-full bg-blue-800 px-8 py-2">
+                  Logout
+                </button>
+              </Form>
+            )}
+            {!userId && (
+              <NavLink
+                to="/auth"
+                className="text-white hover:text-blue-500 [&.active]:text-blue-500 rounded-full bg-blue-800 px-8 py-2"
+              >
+                Login
+              </NavLink>
+            )}
           </li>
         </ul>
       </nav>

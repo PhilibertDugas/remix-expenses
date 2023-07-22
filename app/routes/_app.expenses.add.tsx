@@ -4,8 +4,10 @@ import invariant from "tiny-invariant";
 import ExpenseForm from "~/components/expenses/ExpenseForm";
 import Modal from "~/components/util/Modal";
 import { addExpense } from "~/models/expenses.server";
+import { requireUserSession } from "~/models/user.server";
 
 export const action = async ({ request }: ActionArgs) => {
+  const userId = await requireUserSession(request);
   const formData = await request.formData();
   const title = formData.get("title");
   const date = formData.get("date");
@@ -21,7 +23,7 @@ export const action = async ({ request }: ActionArgs) => {
     amount: +amount,
   };
 
-  await addExpense(expenseData);
+  await addExpense(expenseData, userId);
   return redirect("/expenses");
 };
 

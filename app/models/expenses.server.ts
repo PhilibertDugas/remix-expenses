@@ -2,18 +2,21 @@ import { prisma } from "../data/database.server";
 import type { Expense } from "@prisma/client";
 
 export const addExpense = async (
-  expenseData: Pick<Expense, "title" | "amount" | "date">
+  expenseData: Pick<Expense, "title" | "amount" | "date">,
+  userId: string
 ) => {
   try {
-    return await prisma.expense.create({ data: expenseData });
+    return await prisma.expense.create({
+      data: { User: { connect: { id: userId } }, ...expenseData },
+    });
   } catch (error) {
     console.log(error);
     throw error;
   }
 };
 
-export async function getExpenses() {
-  return prisma.expense.findMany();
+export async function getExpenses(userId: string) {
+  return prisma.expense.findMany({ where: { userId } });
 }
 
 export const getSingleExpense = (id: string) => {

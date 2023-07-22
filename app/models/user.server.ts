@@ -61,3 +61,36 @@ export const login = async ({
 
   return createUserSession(existingUser.id, "/expenses");
 };
+
+export const getUserFromSession = async (request: Request) => {
+  const session = await sessionStorage.getSession(
+    request.headers.get("Cookie")
+  );
+  const userId = session.get("userId") as string;
+  if (!userId) {
+    return null;
+  }
+  return userId;
+};
+
+export const destroyUserSession = async (request: Request) => {
+  const session = await sessionStorage.getSession(
+    request.headers.get("Cookie")
+  );
+
+  return redirect("/", {
+    headers: {
+      "Set-Cookie": await sessionStorage.destroySession(session),
+    },
+  });
+};
+
+export const requireUserSession = async (request: Request) => {
+  const userId = await getUserFromSession(request);
+
+  if (!userId) {
+    throw redirect("/auth?mode=login");
+  }
+
+  return userId;
+};
